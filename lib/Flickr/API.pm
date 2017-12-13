@@ -866,21 +866,26 @@ Flickr::API - Perl interface to the Flickr API
 
 =head1 SYNOPSIS
 
-=head2 Using OAuth to call a B<method> not requiring authentication
+=head2 Using OAuth to call a B<method> not requiring authentication B<and> create saved configuration
 
   use Flickr::API;
 
+  # manually entering credentials for this script
+  #
   my $api = Flickr::API->new({
         'consumer_key'    => 'your_api_key',
         'consumer_secret' => 'your_app_secret',
     });
-
+  
+  # simple test of the API
+  #
   my $response = $api->execute_method('flickr.test.echo', {
         'foo' => 'bar',
         'baz' => 'quux',
     });
 
-
+  # write out a saved configuration to use later
+  # 
   my $config_file = $HOME/saved-flickr.st;
   $api->export_storable_config($config_file);
 
@@ -918,13 +923,16 @@ Flickr::API - Perl interface to the Flickr API
 
   my $response = $api->execute_request($request);
 
+
 =head2 Authenticate an OAuth API Object starting with saved configuration
 
   use Flickr::API;
   use Term::ReadLine;
 
+  # using a saved configuration like the one created in example above
+  #
   my $config_file = "$ENV{HOME}/saved-flickr.st";
-  my $term   = Term::ReadLine->new('Testing Flickr::API');
+  my $term   = Term::ReadLine->new('Using config saved from earlier example, Test Flickr::API');
   $term->ornaments(0);
 
   my $api = Flickr::API->import_storable_config($config_file);
@@ -1263,7 +1271,7 @@ OAuth patches and additions Louis B. Moore <lbmoore@cpan.org>
 Copyright (C) 2004-2013, Cal Henderson, E<lt>cal@iamcal.comE<gt>
 
 OAuth patches and additions
-Copyright (C) 2014-2016 Louis B. Moore <lbmoore@cpan.org>
+Copyright (C) 2014-2017 Louis B. Moore <lbmoore@cpan.org>
 
 
 This program is released under the Artistic License 2.0 by The Perl Foundation.
