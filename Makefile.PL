@@ -70,6 +70,7 @@ WriteMakefile(
     },
     'TEST_REQUIRES'  =>  {
         'Test::Script' => 0,
+        'File::Slurp::Tiny' => 0,
     },
     'EXE_FILES' =>
         [
